@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Walkthrough</title>
+    <script id="sap-ui-bootstrap" src="/../../resources/sap-ui-core.js" data-sap-ui-language="en" data-sap-ui-theme="sap_belize"
+        data-sap-ui-libs="sap.m" data-sap-ui-compatVersion="edge" data-sap-ui-preload="async" data-sap-ui-resourceroots='{
+            "monoculus": "./"
+         }'>
+        </script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+
+            //Definimos la funcion, en este caso le agregamos el parametro para acceder a los parametros que recibe
+            var onPressImage = function (oEvent) {
+                //el methodo getSource de oEvent nos permite acceder a la infomacion del controlador en tiempo de ejecucion
+                var sId = oEvent.getSource().getId();
+                alert("Hello UI5 " + sId + " !");
+            };
+
+            //agregamos la funcion al constructor
+            var oImage = new sap.m.Image("Image1", {
+                src: "img/UI5_logo.png",
+                decorative: false,
+                alt: "SAPUI5 Logo",
+                press: onPressImage
+            }).placeAt("content");
+
+            //en este caso al constructor le pasamos una funcion anonima
+            var oImage = new sap.m.Image("Image2", {
+                src: "img/UI5_logo.png",
+                decorative: false,
+                alt: "SAPUI5 Logo",
+                press: onPressImage
+            }).placeAt("content");
+
+            //se intancia un label con ID y propiedad de text
+            var oLabel = new sap.m.Label("rbgLabel", {
+                text: "Which logo do you like better?"
+            }).placeAt("content");
+
+            //aca se crean los radio button
+            var oRadioButton = new sap.m.RadioButton({
+                text: "Left Logo"
+            });
+            var oRadioButton2 = new sap.m.RadioButton({
+                text: "Right Logo"
+            });
+
+            // se instancia un radiobuttongroup y se definen la cantidad de radio buttons en la propiedad column
+            // number of columns
+            var oRadioButtonGroup = new sap.m.RadioButtonGroup({
+                columns: 2
+            });
+
+            // agregamos al grupo los botones creados
+            oRadioButtonGroup.addButton(oRadioButton);
+            oRadioButtonGroup.addButton(oRadioButton2);
+
+            //mostramos en la pantalla el grupo de botones
+            oRadioButtonGroup.placeAt("content");
+
+        });
+    </script>
+</head>
+
+<body class="sapUiBody" id="content">
+</body>
+
+</html>

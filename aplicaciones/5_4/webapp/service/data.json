@@ -1,0 +1,44 @@
+{
+    "CountSuppliers": "2",
+    "Suppliers": [
+        {
+            "ID": 0,
+            "Name": "Exotic Liquids",
+            "Address": {
+                "Street": "NE 228th",
+                "City": "Sammamish",
+                "State": "WA",
+                "ZipCode": "98074",
+                "Country": "USA",
+                "PhoneNumber": "+1-123-123-1234"
+            },
+            "Products": [{
+                "ID": 0,
+                "Name": "Bread",
+                "Price": 2.5
+            },
+            {
+                "ID": 7,
+                "Name": "DVD Player",
+                "Price": 35.88
+            },
+            {
+                "ID": 8,
+                "Name": "LCD HDTV",
+                "Price": 1088.8
+            }]
+        },
+        {
+            "ID": 1,
+            "Name": "Tokyo Traders",
+            "Address": {
+                "Street": "NE 40th",
+                "City": "Redmond",
+                "State": "WA",
+                "ZipCode": "98052",
+                "Country": "USA",
+                "PhoneNumber": "+1-123-123-1235"
+            }
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <title>JSON First Steps</title>
+    <script id="sap-ui-bootstrap" src="../../resources/sap-ui-core.js" data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_belize"
+        data-sap-ui-compatVersion="edge" data-sap-ui-xx-bindingSyntax="complex">
+        </script>
+    <script>
+        // instantiate the model
+        var oModel = sap.ui.model.json.JSONModel();
+        //load the data asynchronously
+        oModel.loadData("service/data.json");
+        //attach to the requestCompleted event in order to know when manipulation of the data is safe:
+        oModel.attachRequestCompleted(function (oEvent) {
+            //get and manipulate particular value:
+            var sSupplierName = oModel.getProperty("/Suppliers/0/Name");
+            sSupplierName = sSupplierName + " Sammamish";
+            oModel.setProperty("/Suppliers/0/Name", sSupplierName);
+        });
+        sap.ui.getCore().setModel(oModel);
+        var oText = new sap.m.Text({ text: "{/Suppliers/0/Name}" });
+        var oInput = new sap.m.Input({ value: "{/Suppliers/0/Name}" });
+        var oInput2 = new sap.m.Input({
+            value: {
+                path: "/Suppliers/0/Address/ZipCode",
+                type: new sap.ui.model.type.Integer({
+                    minimum: 5,
+                    maximum: 8
+                })
+            }
+        });
+
+        var oZipInput = new sap.m.Input({
+            value: {
+                path: "/Suppliers/0/Address/ZipCode",
+                type: new sap.ui.model.type.Integer({
+                    minIntegerDigits: 5
+                },{
+                    minimum: 1,
+                    maximum: 99999
+                })
+            }
+        });
+
+        oZipInput.attachParseError(function (oControlEvent) {
+            alert("Parse Error occurred - this is no integer");
+        });
+
+        oZipInput.attachValidationError(function (oControlEvent) {
+            alert("Validation error occurred - some constraints were violated: " + oControlEvent.getParameters().newValue + " is not between minimum and maximum");
+        });
+
+        oText.placeAt("content");
+        oInput.placeAt("content");
+        oInput2.placeAt("content");
+        oZipInput.placeAt("content");
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <div id="content"></div>
+</body>
+
+</html>

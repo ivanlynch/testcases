@@ -1,0 +1,31 @@
+<View controllerName="sapui5.demo.mvcapp.controller.Master" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>masterViewTitle}">
+		<content>
+			<Table id="table" class="sapUiResponsiveMargin" width="auto" items="{/Suppliers}" noDataText="{i18n>tableNoDataText}">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{i18n>SuppliersList}" />
+						<ToolbarSpacer />
+						<Button icon="sap-icon://add" tooltip="{i18n>btnAddSupplier}" press="onAddSupplier" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="idColumn">
+						<Text id="IDColumnTitle" text="{i18n>tableIDColumnTitle}" />
+					</Column>
+					<Column id="nameColumn">
+						<Text id="nameColumnTitle" text="{i18n>tableNameColumnTitle}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onListPress">
+						<cells>
+							<ObjectIdentifier text="{ID}" />
+							<ObjectIdentifier text="{Name}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</View>
